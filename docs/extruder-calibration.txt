@@ -1,0 +1,23 @@
+
+Mark you filament 120mm above the entry to your extruder.
+Heat up the nozzle to your desired printing temperature
+Home all axis to get in "printer ready" state
+Lift up your nozzle by 50mm (to make room for the filament!)
+  - "G1 Z50 F1200" -> moves z 50mm
+
+Execute the following commands (one by one)
+  - "G92 E0" => This resets the "extruded material" value to 0.
+  - "G1 E100 F100" => This extrudes 100mm filament with 100mm/min.
+
+Now measure the distance between your extruder entry and the mark on your filament.
+
+I.e if it is 28mm instead of 20mm (120mm - 100mm) than you are UNDERextruding by 8mm ==> 92mm instead of 100mm. If it shows 15mm than your are OVERextruding by 5mm ==> 105mm.
+
+Now calc:
+
+c := current value in configuration.cfg
+m := measured left over filament
+d := desired mm
+n := new value for configuration.cfg
+
+((120 - m) / d) * c = n
